@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+   <canvas id="MyCanevas" width="700" height="400"></canvas>
+
+<div>Use Keyboard to move rectangle</div>
+<br />
+<button>&uarr;</button> Move Up
+<br />
+<button>&darr;</button> Move Down
+<br />
+<button>&larr;</button> Move Left
+<br />
+<button>&rarr;</button> Move Right
+
+
+
+
+
+<script>
+    var stage = document.getElementById('MyCanevas'), 
+        ctx = stage.getContext('2d'), 
+        x = 10, 
+        y = 10, 
+        wid = 40; 
+        hei = 40; 
+
+
+        var myGamePiece;
+var myObstacle;
+
+function startGame() {
+  myGamePiece = new component(30, 30, "red", 10, 120);
+  myObstacle = new component(10, 200, "green", 300, 120);
+  myGameArea.start();
+}
+
+//Draw Rectangle function   
+function drawRect(x,y,wid,hei) {
+    ctx.fillStyle = 'red'; 
+    ctx.fillRect(x, y, wid, hei); 
+}
+
+drawRect(x,y,wid,hei); 
+window.onkeydown = function(event) {
+    var keyPr = event.keyCode; 
+  
+    if(keyPr === 39 && x<=645){ 
+        x = x+20; //right arrow add 20 from current
+    }
+    else if(keyPr === 37 && x>10){
+        x = x-20; //left arrow subtract 20 from current
+    }
+    else if(keyPr === 38 && y>10) {
+        y = y-20; //top arrow subtract 20 from current
+    }
+    else if(keyPr === 40 && y<=340){
+        y = y+20; //bottom arrow add 20 from current
+    }
+    
+    
+    ctx.clearRect(0,0, 800, 800);
+  
+    //Drawing rectangle  nouvelle position
+    drawRect(x,y,wid,hei);
+};
+
+
+
+</script>
+<style>
+#MyCanevas {
+  border: 5px solid #333;
+  position: relative;
+  top: 100px;
+  left:330px;
+}
+</style>
+
+</body>
+</html>
